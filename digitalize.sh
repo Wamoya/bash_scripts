@@ -6,7 +6,7 @@ if [ "$#" -ne 1 ]; then
 	exit 1
 fi
 
-# Exit if the $1 does not exist.
+# Exit if $1 does not exist.
 if [ ! -e "$1" ]; then
         echo "Error: The specified target file does not exist."
         exit 1

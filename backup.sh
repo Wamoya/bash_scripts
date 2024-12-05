@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-# Exit if Number of Arguments != 1
+# Exit if Number of Arguments != 2
 if [ $# -ne 2 ]; then
 	echo "Correct usage: $0 <target_path> <identificator>"
 	exit 1
@@ -17,7 +17,7 @@ fi
 echo "Time of execution:	$(date)"
 now=$(date +%Y%m%d%H%M)
 
-echo "Route selected:		$1"
+echo "Target path:		$1"
 echo "Identificator:		$2"
 
 target="$1"
@@ -28,7 +28,7 @@ echo "$target will be zipped into $archive"
 
 
 read -p "Continue? [y]/n: " confirm
-if [ "$confirm" == "n" ]; then
+if [ "$confirm" == "n" -o "$confirm" == "N" ]; then
 	echo "Process terminated."
 	exit 1
 fi
