@@ -9,6 +9,7 @@ if [ -z "$file" ]; then
 fi
 
 # Exit if $file does not exist
+IFS=
 if [ ! -e "$file" ]; then
 	echo "Error: $file does not exist."
 	exit 1
