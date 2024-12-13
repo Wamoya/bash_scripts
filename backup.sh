@@ -30,7 +30,7 @@ echo "$target will be zipped into $archive"
 read -p "Continue? [y]/n: " confirm
 if [ "$confirm" == "n" -o "$confirm" == "N" ]; then
 	echo "Process terminated."
-	exit 1
+	exit 0
 fi
 
 

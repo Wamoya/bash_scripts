@@ -23,14 +23,31 @@ if [ -z "$images" ]; then
 fi
 
 
-
-# Main loop
+i=0
+echo "Files will be added in this order:"
 while IFS= read -r image; do
     if [ ! -e "$image" ]; then
         echo "Warning: File '$image' does not exist. Terminating process."
         exit 1
     fi
+    echo "- $image"
+    i=$((i + 1))
+done <<< "$images"
+echo "Total: $i"
+
+# Ask user confirm
+read -p "Continue? [y]/n: " confirm
+if [[ "$confirm" == "n" || "$confirm" == "N" ]]; then
+        echo "Process terminated."
+        exit 0
+fi
+
+# Main loop
+while IFS= read -r image; do
     echo -n "$image: "
-    sed -i "0,/!\[\[\]\]/{s#!\[\[\]\]#![[$image]]#}" "$file"
-    echo "Successfully inserted."
+    if sed -i "0,/!\[\[\]\]/{s#!\[\[\]\]#![[$image]]#}" "$file"; then
+        echo "Successfully inserted."
+    else
+        echo "Error."
+    fi
 done <<< "$images"
