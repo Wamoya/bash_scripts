@@ -1,6 +1,6 @@
 #!/bin/bash
 
-file=$(fzf --height=60% --header="Select the file to edit." --border --border-label="$PWD" --preview="cat {}")
+file=$(fzf --height=60% --header="Select the file to edit." --border --border-label="$PWD" --preview="batcat {} --color=always")
 
 # Exit if $file is empty
 if [ -z "$file" ]; then
