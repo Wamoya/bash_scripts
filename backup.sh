@@ -40,3 +40,6 @@ echo "## PROGRESS: #################"
 tar -cvzf "$archive" "$target"
 echo "##############################"
 echo "$target was successfully zipped into $archive!"
+
+export f=$archive
+echo "The full path to $archive has been temporary stored in variable \$f"
