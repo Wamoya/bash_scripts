@@ -28,7 +28,6 @@ if [ -z "$images" ]; then
 fi
 
 # Exit if number of images selected != $count
-echo $images
 selected=$(echo $images | tr ' ' '\n' | wc -l)
 if [ $selected -ne $count ]; then
     echo "Error: You must select exactly $count images. You selected $selected."
