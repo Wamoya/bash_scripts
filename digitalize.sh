@@ -12,8 +12,13 @@ if [ ! -e "$1" ]; then
         exit 1
 fi
 
-# Variables
+# Iterate through every line and count the ![[]] flags
 file="$1"
+count=$(grep -o '!\[\[\]\]' "$file" | wc -l)
+echo "Total of available slots: $count"
+
+
+# Images
 images=$(fzf -m -q "IMG_" --height=40% --header="Select the image files in order." --border --border-label="$PWD")
 
 # Exit if $images is empty
@@ -22,6 +27,13 @@ if [ -z "$images" ]; then
 	exit 1
 fi
 
+# Exit if number of images selected != $count
+echo $images
+selected=$(echo $images | tr ' ' '\n' | wc -l)
+if [ $selected -ne $count ]; then
+    echo "Error: You must select exactly $count images. You selected $selected."
+    exit 1
+fi
 
 i=0
 echo "Files will be added in this order:"
