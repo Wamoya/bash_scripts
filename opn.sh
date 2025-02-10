@@ -16,3 +16,5 @@ if [ ! -e "$file" ]; then
 fi
 
 nvim "$PWD/$file"
+
+exit 0

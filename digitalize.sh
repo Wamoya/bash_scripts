@@ -19,7 +19,7 @@ echo "Total of available slots: $count"
 
 
 # Images
-images=$(fzf -m -q "IMG_" --height=40% --header="Select the image files in order." --border --border-label="$PWD")
+images=$(fzf --multi --query="IMG_" --height=40% --header="Select the image files in order." --border --border-label="$PWD")
 
 # Exit if $images is empty
 if [ -z "$images" ]; then
@@ -56,9 +56,11 @@ fi
 # Main loop
 while IFS= read -r image; do
     echo -n "$image: "
-    if sed -i "0,/!\[\[\]\]/{s#!\[\[\]\]#![[$image]]#}" "$file"; then
+    if sed --in-place "0,/!\[\[\]\]/{s#!\[\[\]\]#![[$image]]#}" "$file"; then
         echo "Successfully inserted."
     else
         echo "Error."
     fi
 done <<< "$images"
+
+exit 0

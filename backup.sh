@@ -37,9 +37,11 @@ fi
 
 echo "Now zipping $target to $archive"
 echo "## PROGRESS: #################"
-tar -cvzf "$archive" "$target"
+tar --create --verbose --gzip --file="$archive" "$target"
 echo "##############################"
 echo "$target was successfully zipped into $archive!"
 
 export f=$archive
 echo "The full path to $archive has been temporary stored in variable \$f"
+
+exit 0
