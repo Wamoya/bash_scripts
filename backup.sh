@@ -2,8 +2,8 @@
 
 
 # Exit if Number of Arguments != 2
-if [ $# -ne 2 ]; then
-	echo "Correct usage: $0 <target_path> <identificator>"
+if [ $# -ne 2 ] && [ $# -ne 3 ]; then
+	echo "Correct usage: $0 <target_path> <identificator> [-y]"
 	exit 1
 fi
 
@@ -26,11 +26,14 @@ archive="/tmp/$now-$2.tar.gz"
 echo "$target will be zipped into $archive"
 
 
-
-read -p "Continue? [y]/n: " confirm
-if [ "$confirm" == "n" -o "$confirm" == "N" ]; then
-	echo "Process terminated."
-	exit 0
+if [ "$3" == "-y" ]; then
+	echo "Continuing without asking."
+else
+	read -p "Continue? [y]/n: " confirm
+	if [ "$confirm" == "n" ] || [ "$confirm" == "N" ]; then
+		echo "Process terminated."
+		exit 0
+	fi
 fi
 
 
@@ -41,7 +44,7 @@ tar --create --verbose --gzip --file="$archive" "$target"
 echo "##############################"
 echo "$target was successfully zipped into $archive!"
 
-export f=$archive
-echo "The full path to $archive has been temporary stored in variable \$f"
+#export f=$archive
+#echo "The full path to $archive has been temporary stored in variable \$f"
 
 exit 0
