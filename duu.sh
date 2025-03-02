@@ -7,7 +7,9 @@ else
 fi
 
 for file in $target; do
-    echo $(basename "$file")
-    du --total --human-readable "$file" | grep total
-    echo ""
+    usage=$(du --total --human-readable "$file" | grep total)
+    name=$(basename "$file")
+    echo -e "${usage} \e[96m${name}\e[0m"
 done
+
+exit 0
