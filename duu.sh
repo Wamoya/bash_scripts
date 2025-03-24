@@ -7,9 +7,9 @@ else
 fi
 
 for file in $target; do
-    usage=$(du --total --human-readable "$file" | grep total)
+    disk_usage=$(du --total --human-readable "$file" | grep total)
     name=$(basename "$file")
-    echo -e "${usage} \e[96m${name}\e[0m"
+    echo -e "${disk_usage} \e[96m${name}\e[0m"
 done
 
 exit 0
