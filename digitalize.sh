@@ -47,7 +47,7 @@ done <<< "$images"
 echo "Total: $i"
 
 # Ask user confirm
-read -p "Continue? [y]/n: " confirm
+read -p "Continue? [Y/n]: " confirm
 if [[ "$confirm" == "n" || "$confirm" == "N" ]]; then
         echo "Process terminated."
         exit 0

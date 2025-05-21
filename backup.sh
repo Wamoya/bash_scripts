@@ -29,7 +29,7 @@ echo "$target will be zipped into $archive"
 if [ "$3" == "-y" ]; then
 	echo "Continuing without asking."
 else
-	read -p "Continue? [y]/n: " confirm
+	read -p "Continue? [Y/n]: " confirm
 	if [ "$confirm" == "n" ] || [ "$confirm" == "N" ]; then
 		echo "Process terminated."
 		exit 0

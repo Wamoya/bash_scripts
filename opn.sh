@@ -15,6 +15,6 @@ if [ ! -e "$file" ]; then
 	exit 1
 fi
 
-nvim "$PWD/$file"
+nvim "${PWD}/${file}"
 
 exit 0
