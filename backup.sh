@@ -65,4 +65,6 @@ tar -cf - "$input" | pv -s "$size" | gzip > "$output"
 # gzip "$temp_tar"
 # mv "${temp_tar}.gz" "$output"
 
+~/repos/bash_scripts/backup_aux.sh "$output"
+
 exit 0

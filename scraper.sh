@@ -1,6 +1,8 @@
 #!/bin/bash
 
-local="/tmp/scraper.html"
+download_path="/tmp/scraper"
+initial_name="${download_path}.html"
+final_name="${download_path}_filtered.html"
 
 
 if [ "$#" -ne 1 ]; then
@@ -9,7 +11,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 
-wget -q "$1" -O "$local"
+wget -q "$1" -O "$initial_name"
 
 if [ $? -ne 0 ]; then
     echo "Error when downloading from URL: $1"
@@ -18,9 +20,9 @@ fi
 
 
 
-grep -E '^(<h[1-6]>|<p>|</p>|<ul>|</ul>|<ol>|</ol>|<li>|</li>|<!DOCTYPE html>|<head>|</head>|<body>|</body>)' "$local" > "${local}_filtered"
+grep -E '^(<h[1-6]>|<p>|</p>|<ul>|</ul>|<ol>|</ol>|<li>|</li>|<!DOCTYPE html>|<head>|</head>|<body>|</body>)' "$initial_name" > "$final_name"
 
 echo "Done!"
-filtered_file_path=$(wslpath -w "${local}_filtered")
+filtered_file_path=$(wslpath -w "$final_name")
 explorer.exe "$filtered_file_path"
 exit 0
