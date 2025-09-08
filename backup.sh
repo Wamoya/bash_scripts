@@ -47,7 +47,7 @@ echo "Now zipping $input to $output"
 
 # total=$(find $input -type f | wc --lines)
 size=$(du -sb "$input" | awk '{print $1}')
-count=0
+#count=0
 
 tar -cf - "$input" | pv -s "$size" | gzip > "$output"
 
