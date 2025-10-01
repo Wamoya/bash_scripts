@@ -29,7 +29,7 @@ echo "$input will be zipped into $output"
 if [ "$3" == "-y" ]; then
 	echo "Continuing without asking."
 else
-	read -p "Continue? [Y/n]: " confirm
+	read -r -p "Continue? [Y/n]: " confirm
 	if [ "$confirm" == "n" ] || [ "$confirm" == "N" ]; then
 		echo "Process terminated."
 		exit 0

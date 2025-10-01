@@ -3,7 +3,7 @@
 if [ $# -eq 0 ]; then
     target="./*"
 else
-    target="$@"
+    target=("$@")
 fi
 
 for file in $target; do
